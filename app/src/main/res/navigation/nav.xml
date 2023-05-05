@@ -9,14 +9,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.cryptoscapes.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/marketFragment"
-        android:name="com.example.cryptoscapes.fragment.MarketFragment"
-        android:label="fragment_market"
-        tools:layout="@layout/fragment_market" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.cryptoscapes.fragment.DetailsFragment"
-        android:label="DetailsFragment" />
+        android:label="DetailsFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.example.cryptoscapes.models.CryptoCurrency"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

@@ -13,13 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
-        val navController = navHostFragment!!.findNavController()
-        val popupMenu = PopupMenu(this, null)
-        popupMenu.inflate(R.menu.nav_menu)
-        binding.bottomBar.setupWithNavController(popupMenu.menu, navController)
+        
     }
 }
 
