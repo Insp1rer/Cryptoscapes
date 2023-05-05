@@ -41,7 +41,7 @@ class DetailsFragment : Fragment() {
         }
 
     private fun setUpDetails(data: CryptoCurrency) {
-    binding.detailSymbolTextView.text = data.symbol
+    binding.detailSymbolTextView.text = data?.symbol
 
         Glide.with(requireContext()).load("https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/" + data.id + ".png")
             .thumbnail(Glide.with(requireContext()).load(R.drawable.spinner))
