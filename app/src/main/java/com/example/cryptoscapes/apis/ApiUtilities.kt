@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiUtilities {
 
-val api = getRetrofit().create(ApiInterface::class.java)
+//val api = getRetrofit().create(ApiInterface::class.java)
 
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()

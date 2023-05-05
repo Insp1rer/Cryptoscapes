@@ -2,4 +2,12 @@
     <string name="app_name">Cryptoscapes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="not_found">Нічого не знайдено</string>
+    <string name="search_hint">Пошук</string>
+    <string name="_1m">1 хв</string>
+    <string name="_1d">1 день</string>
+    <string name="_15m">15 хв</string>
+    <string name="_1w">1 тжд</string>
+    <string name="_1h">1 год</string>
+    <string name="_4h">4 год</string>
 </resources>

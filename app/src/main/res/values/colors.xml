@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="back_color">#141414</color>
     <color name="fab_color">#20D761</color>
+    <color name="yellow">#ffdd03</color>
+    <color name="dark_yellow">#ffd103</color>
+    <color name="green">#32a852</color>
+    <color name="red">#bd0b1d</color>
 </resources>
