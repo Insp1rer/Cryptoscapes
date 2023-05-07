@@ -1,4 +1,4 @@
-package com.example.cryptoscapes.adapter
+package com.example.cryptoscapes.presentation.adapter
 
 
 import android.content.Context
@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.cryptoscapes.R
 import com.example.cryptoscapes.databinding.TopCurrencyLayoutBinding
 import com.example.cryptoscapes.models.CryptoCurrency
+
 
 class MarketAdapter(var context: Context, val list: List<CryptoCurrency>) :
     RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {

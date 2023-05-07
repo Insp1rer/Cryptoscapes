@@ -1,4 +1,4 @@
-package com.example.cryptoscapes.models
+package com.example.cryptoscapes.data.models
 
 data class Status(
     val credit_count: Int,

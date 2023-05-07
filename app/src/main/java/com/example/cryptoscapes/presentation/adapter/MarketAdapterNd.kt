@@ -1,4 +1,4 @@
-package com.example.cryptoscapes.adapter
+package com.example.cryptoscapes.presentation.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cryptoscapes.R
 import com.example.cryptoscapes.databinding.CurrencyItemLayoutBinding
-import com.example.cryptoscapes.fragment.HomeFragmentDirections
 import com.example.cryptoscapes.models.CryptoCurrency
+import com.example.cryptoscapes.presentation.fragment.home.HomeFragmentDirections
 
 class MarketAdapterNd(var context : Context, var list: List<CryptoCurrency>) : RecyclerView.Adapter<MarketAdapterNd.MarketNdViewHolder>(){
 
     inner class MarketNdViewHolder(view: View) : RecyclerView.ViewHolder(view){
-    var binding = CurrencyItemLayoutBinding.bind(view)
+        var binding = CurrencyItemLayoutBinding.bind(view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketNdViewHolder {
@@ -36,12 +36,12 @@ class MarketAdapterNd(var context : Context, var list: List<CryptoCurrency>) : R
             .into(holder.binding.currencyChartImageView)
 
         holder.binding.currencyPriceTextView.text =
-        "${String.format("$%.02f", item.quotes[0].price)} "
+            "${String.format("$%.02f", item.quotes[0].price)} "
 
         if(item.quotes!![0].percentChange24h > 0){
             holder.binding.currencyChangeTextView.setTextColor(context.resources.getColor(R.color.green))
             holder.binding.currencyChangeTextView.text = "+ ${String.format("%.02f", item.quotes[0].percentChange24h)} %"
-        }else{
+        } else{
             holder.binding.currencyChangeTextView.setTextColor(context.resources.getColor(R.color.red))
             holder.binding.currencyChangeTextView.text = "${String.format("%.02f", item.quotes[0].percentChange24h)} %"
         }
@@ -53,11 +53,8 @@ class MarketAdapterNd(var context : Context, var list: List<CryptoCurrency>) : R
         }
     }
 
-
     override fun getItemCount(): Int {
         return list.size
     }
-
-
 
 }

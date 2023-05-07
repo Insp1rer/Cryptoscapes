@@ -1,9 +1,9 @@
-package com.example.cryptoscapes.adapter
+package com.example.cryptoscapes.presentation.adapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.cryptoscapes.fragment.TopLossGainFragment
+import com.example.cryptoscapes.presentation.fragment.topLossGain.TopLossGainFragment
 
 class TopLossGainPagerAdapter(fragment : Fragment) : FragmentStateAdapter(fragment){
     override fun getItemCount(): Int {

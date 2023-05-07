@@ -1,9 +1,7 @@
-package com.example.cryptoscapes
+package com.example.cryptoscapes.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.PopupMenu
-import androidx.navigation.fragment.findNavController
 import com.example.cryptoscapes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,5 +1,8 @@
 package com.example.cryptoscapes.models
 
+import com.example.cryptoscapes.data.models.AuditInfo
+import com.example.cryptoscapes.data.models.Platform
+import com.example.cryptoscapes.data.models.Quote
 import java.io.Serializable
 
 data class CryptoCurrency(

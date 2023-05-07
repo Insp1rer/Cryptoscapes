@@ -1,0 +1,1 @@
+safeargs plugin prikaluet'sya, tomy cei class znahoditsya tyt, a ne v papci "data\models"

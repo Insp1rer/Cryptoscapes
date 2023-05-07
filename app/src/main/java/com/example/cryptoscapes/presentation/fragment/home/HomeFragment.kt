@@ -1,23 +1,19 @@
-package com.example.cryptoscapes.fragment
+package com.example.cryptoscapes.presentation.fragment.home
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.*
-import com.example.cryptoscapes.adapter.MarketAdapter
-import com.example.cryptoscapes.adapter.TopLossGainPagerAdapter
-import com.example.cryptoscapes.apis.ApiInterface
-import com.example.cryptoscapes.apis.ApiUtilities
 import com.example.cryptoscapes.databinding.FragmentHomeBinding
+import com.example.cryptoscapes.presentation.adapter.MarketAdapter
+import com.example.cryptoscapes.presentation.adapter.TopLossGainPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -30,11 +26,24 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        getTopCurrencyList()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setTabLayout()
 
-        return binding.root
+        val homeFragmentViewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+        homeFragmentViewModel.marketModelLiveData.observe(viewLifecycleOwner){
+
+            binding.topCurrencyRecyclerView.adapter =
+                MarketAdapter(requireContext(), it.data.cryptoCurrencyList)
+
+            Log.d("SHUBH", "getTopCurrencyList: ${it.data.cryptoCurrencyList}")
+        }
+        homeFragmentViewModel.getData()
+
     }
 
     private fun setTabLayout(){
@@ -55,28 +64,16 @@ class HomeFragment : Fragment() {
             }
         })
 
-        TabLayoutMediator(binding.tabLayout, binding.contentViewPager){
-            tab, position ->
-            var title = if (position == 0){
+        TabLayoutMediator(binding.tabLayout, binding.contentViewPager) { tab, position ->
+            var title = if (position == 0) {
                 "Найбільше зросли"
-            }else{
+            }
+            else {
                 "Найбільше просіли"
             }
             tab.text = title
         }.attach()
 
-    }
-
-    private fun getTopCurrencyList(){
-        lifecycleScope.launch(Dispatchers.IO){
-            val res = ApiUtilities.getRetrofit().create(ApiInterface::class.java).getMarketData()
-
-            withContext(Dispatchers.Main){
-                binding.topCurrencyRecyclerView.adapter = MarketAdapter(requireContext(), res.body()!!.data.cryptoCurrencyList)
-            }
-
-            Log.d("SHUBH", "getTopCurrencyList: ${res.body()!!.data.cryptoCurrencyList}")
-        }
     }
 
 }

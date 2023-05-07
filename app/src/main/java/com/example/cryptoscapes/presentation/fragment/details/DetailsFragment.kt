@@ -1,16 +1,16 @@
-package com.example.cryptoscapes.fragment
+package com.example.cryptoscapes.presentation.fragment.details
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.cryptoscapes.R
-import com.example.cryptoscapes.databinding.FragmentDetailsBinding
 import com.example.cryptoscapes.models.CryptoCurrency
-
+import com.example.cryptoscapes.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
 
@@ -24,6 +24,10 @@ class DetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDetailsBinding.inflate(layoutInflater)
 
+        binding.backStackButton.setOnClickListener{
+            findNavController().popBackStack()
+        }
+
         val data : CryptoCurrency = item.data!!
         setUpDetails(data)
         loadChart(data)
@@ -31,19 +35,20 @@ class DetailsFragment : Fragment() {
         return binding.root
     }
 
-        private fun loadChart(data: CryptoCurrency) {
-            binding.detaillChartWebView.settings.javaScriptEnabled = true
-            binding.detaillChartWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+    private fun loadChart(data: CryptoCurrency) {
+        binding.detaillChartWebView.settings.javaScriptEnabled = true
+        binding.detaillChartWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
-            binding.detaillChartWebView.loadUrl(
-                "https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76d87&symbol=" + item.data?.symbol
-            )
-        }
+        binding.detaillChartWebView.loadUrl(
+            "https://s.tradingview.com/widgetembed/?frameElementId=tradingview_76d87&symbol=" + item.data?.symbol
+        )
+    }
 
     private fun setUpDetails(data: CryptoCurrency) {
-    binding.detailSymbolTextView.text = data?.symbol
+        binding.detailSymbolTextView.text = data?.symbol
 
-        Glide.with(requireContext()).load("https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/" + data.id + ".png")
+        Glide.with(requireContext())
+            .load("https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/" + data.id + ".png")
             .thumbnail(Glide.with(requireContext()).load(R.drawable.spinner))
             .into(binding.detailImageView)
 
